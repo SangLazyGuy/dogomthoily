@@ -27,135 +27,193 @@
     model-viewer{width:100%;height:60vh;background:#eee;border-radius:12px}
     @media (max-width:900px){.two-col{flex-direction:column}model-viewer{height:50vh}}
     .muted{color:#556;font-size:.95rem}
-    .topbar{width:100%;max-width:var(--maxw);display:flex;justify-content:space-between;align-items:center;padding:10px 18px;box-sizing:border-box}
-    a.logo{font-weight:700;color:#111;text-decoration:none}
   </style>
 </head>
 <body>
   <div class="app">
 
-    <!-- PAGE 1: Hướng dẫn -->
+    <!-- PAGE 1 -->
     <main id="page1" class="page active">
       <h1>Hướng dẫn nhanh</h1>
-      <div class="steps-wrap" role="region" aria-label="Các bước hướng dẫn">
+      <div class="steps-wrap">
         <section class="step" id="step1">
           <h2>Bước 1 — Giới thiệu</h2>
-          <img src="https://via.placeholder.com/800x450?text=Ảnh+Bước+1" alt="Ảnh minh họa bước 1">
+          <img src="https://via.placeholder.com/800x450?text=Ảnh+Bước+1">
         </section>
         <section class="step" id="step2">
           <h2>Bước 2 — Cấu trúc thư mục</h2>
-          <img src="https://via.placeholder.com/800x450?text=Ảnh+Bước+2" alt="Ảnh minh họa bước 2">
+          <img src="https://via.placeholder.com/800x450?text=Ảnh+Bước+2">
         </section>
         <section class="step" id="step3">
           <h2>Bước 3 — Cách nhúng mô hình</h2>
-          <img src="https://via.placeholder.com/800x450?text=Ảnh+Bước+3" alt="Ảnh minh họa bước 3">
+          <img src="https://via.placeholder.com/800x450?text=Ảnh+Bước+3">
         </section>
       </div>
-      <div style="display:flex;justify-content:space-between;gap:12px;margin-top:14px">
-        <div style="display:flex;gap:8px">
-          <button class="btn" onclick="showPage('page2')">Next — Sang trang chính</button>
-        </div>
+
+      <div style="margin-top:14px;display:flex;justify-content:space-between">
+        <button class="btn" onclick="showPage('page2')">Next — Sang trang chính</button>
       </div>
     </main>
 
-    <!-- PAGE 2: Chọn đồ gốm -->
+    <!-- PAGE 2 -->
     <section id="page2" class="page">
       <h1>Chọn đồ gốm cần xem</h1>
       <p class="muted">Chọn 1 trong 4 đồ gốm để xem chi tiết.</p>
+
       <div class="nav-grid" style="margin-top:18px">
         <div class="card">
           <h3>Ấm thời Trần</h3>
-          <div style="margin-top:auto;display:flex;gap:8px">
+          <div style="margin-top:auto">
             <button class="btn" onclick="showPage('page3')">Vô xem</button>
           </div>
         </div>
+
         <div class="card">
           <h3>Bình thời Trần</h3>
-          <p class="muted">Mô tả ngắn mô hình đồ gốm Đông Sơn.</p>
-          <div style="margin-top:auto;display:flex;gap:8px">
+          <p class="muted">Dòng gốm hoa nâu tiêu biểu thời Trần.</p>
+          <div style="margin-top:auto">
             <button class="btn" onclick="showPage('page4')">Vô xem</button>
           </div>
         </div>
+
         <div class="card">
           <h3>Bát thời Lý</h3>
-          <div style="margin-top:auto;display:flex;gap:8px">
+          <div style="margin-top:auto">
             <button class="btn" onclick="showPage('page5')">Vô xem</button>
           </div>
         </div>
+
         <div class="card">
           <h3>Bình thời Lý</h3>
-          <div style="margin-top:auto;display:flex;gap:8px">
+          <div style="margin-top:auto">
             <button class="btn" onclick="showPage('page6')">Vô xem</button>
           </div>
         </div>
       </div>
+
       <div style="margin-top:16px;display:flex;gap:8px">
         <button class="btn secondary" onclick="showPage('page1')">Quay lại hướng dẫn</button>
       </div>
     </section>
 
-    <!-- PAGE 3: Sa Huỳnh -->
+    <!-- PAGE 3 – ẤM THỜI TRẦN -->
     <section id="page3" class="page">
       <h1>Ấm thời Trần</h1>
       <div class="two-col" style="margin-top:12px">
+
         <div class="col-left">
-          <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/amthoitran.glb" alt="Mô hình A"
+          <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/amthoitran.glb"
             camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look"></model-viewer>
         </div>
+
         <div class="col-right">
           <h2>Chi tiết về ấm thời Trần</h2>
-          <div style="margin-top:auto;display:flex;gap:8px">
+
+          <p>
+            Ấm men ngọc cuối Trần – đầu Lê sơ. Xương gốm lọc kỹ, chắc và khá nặng. Men phủ dày, bóng, sắc xanh ngọc ngả vàng nhẹ do quá trình hoàn nguyên trong lò.
+          </p>
+
+          <p>
+            Vòi tạo hình đầu chim, quai uốn mềm như khoen. Thân ấm khắc các băng văn mây, dây lá và cánh sen; những rãnh khắc giúp men đọng lại, tạo chuyển sắc tự nhiên rất đặc trưng.
+          </p>
+
+          <p class="muted">Kích thước chuẩn khảo cổ: cao ~19,2 cm – miệng 6,5 cm.</p>
+
+          <div style="margin-top:auto">
             <button class="btn" onclick="showPage('page2')">Quay lại trang chọn</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PAGE 4: Đông Sơn -->
+    <!-- PAGE 4 – BÌNH THỜI TRẦN -->
     <section id="page4" class="page">
-      <h1>Bình thời Trần </h1>
+      <h1>Bình thời Trần</h1>
+
       <div class="two-col" style="margin-top:12px">
         <div class="col-left">
-          <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/binhthoitran.glb" alt="Mô hình B"
+          <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/binhthoitran.glb"
             camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look"></model-viewer>
         </div>
+
         <div class="col-right">
           <h2>Chi tiết về bình thời Trần</h2>
-          <div style="margin-top:auto;display:flex;gap:8px">
+
+          <p>
+            Bình gốm hoa nâu điển hình. Xương sành dày, chắc, nung ở 1000–1300°C. Màu nâu lấy từ quặng địa phương giàu oxit sắt nên có nhiều sắc độ: nâu cà phê, nâu hạt dẻ đến nâu da lươn.
+          </p>
+
+          <p>
+            Hoa văn được vẽ nâu sau khi cạo men nền hoặc khắc trực tiếp; một số chỗ còn đắp nổi nhẹ. Phong cách khoẻ, phóng khoáng, nét khắc nông sâu tạo nhịp điệu sống động.
+          </p>
+
+          <p class="muted">
+            Đề tài thường gặp: sen, cúc, cảnh sinh hoạt, và ảnh hưởng Champa với chim thần Kinnari.
+          </p>
+
+          <div style="margin-top:auto">
             <button class="btn" onclick="showPage('page2')">Quay lại trang chọn</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PAGE 5: Hòa Bình -->
+    <!-- PAGE 5 – BÁT THỜI LÝ -->
     <section id="page5" class="page">
       <h1>Bát thời Lý</h1>
+
       <div class="two-col" style="margin-top:12px">
         <div class="col-left">
-          <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/batthoily.glb" alt="Mô hình Hòa Bình"
+          <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/batthoily.glb"
             camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look"></model-viewer>
         </div>
+
         <div class="col-right">
           <h2>Chi tiết về bát thời Lý</h2>
-          <div style="margin-top:auto;display:flex;gap:8px">
+
+          <p>
+            Bát men ngọc thời Lý có dáng gọn, thanh. Xương gốm lọc kỹ, rắn chắc. Men xanh ngọc trong, dày, đôi khi ngả vàng xám hoặc xanh da táo tùy mức độ hoàn nguyên.
+          </p>
+
+          <p>
+            Trang trí chủ yếu bằng khắc chìm hoặc in chìm: cánh sen, dây lá, hoa nhỏ. Những rãnh khắc giữ men tạo loang chuyển màu mềm, đặc trưng của men ngọc Việt.
+          </p>
+
+          <p class="muted">Phổ biến tại Thăng Long, Thanh Hóa và Thiên Trường.</p>
+
+          <div style="margin-top:auto">
             <button class="btn" onclick="showPage('page2')">Quay lại trang chọn</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PAGE 6: Bắc Sơn -->
+    <!-- PAGE 6 – BÌNH THỜI LÝ -->
     <section id="page6" class="page">
-      <h1>Bình thời Lý</h1></h1>
+      <h1>Bình thời Lý</h1>
+
       <div class="two-col" style="margin-top:12px">
         <div class="col-left">
-          <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/binhthoily.glb" alt="Mô hình Bắc Sơn"
+          <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/binhthoily.glb"
             camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look"></model-viewer>
         </div>
+
         <div class="col-right">
           <h2>Chi tiết về bình thời Lý</h2>
-          <div style="margin-top:auto;display:flex;gap:8px">
+
+          <p>
+            Bình men ngọc thời Lý có dáng mềm, cổ cao hoặc thân phình nhẹ. Xương gốm mịn và nặng; men xanh ngọc trong, có thể xuất hiện vết rạn tự nhiên theo thời gian.
+          </p>
+
+          <p>
+            Trang trí bằng khắc chìm, in nổi hoặc đắp nhẹ: cánh sen ở vai, văn mây hay dây lá chạy quanh thân. Các đường khắc giúp men tụ lại, tạo hiệu ứng chuyển sắc đẹp mắt.
+          </p>
+
+          <p class="muted">
+            Thường dùng trong thờ tự và trang trí cung đình.
+          </p>
+
+          <div style="margin-top:auto">
             <button class="btn" onclick="showPage('page2')">Quay lại trang chọn</button>
           </div>
         </div>
@@ -174,20 +232,6 @@
       });
       window.scrollTo({top:0,behavior:'smooth'});
     }
-
-    function downloadGuide(){
-      const md = `# Hướng dẫn deploy site 3D\n\n- Đặt file .glb vào thư mục models/ trong repo.\n- Đặt ảnh vào images/.\n- Sửa src của <model-viewer> thành /models/tenfile.glb\n- Commit và push lên GitHub. Bật GitHub Pages (branch: main, folder: /).`;
-      const blob = new Blob([md],{type:'text/markdown'});
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'Hướng-dẫn-deploy.md';
-      document.body.appendChild(a);a.click();a.remove();
-    }
-
-    (function(){
-      const hash = location.hash.replace('#','');
-      if(['page1','page2','page3','page4','page5','page6'].includes(hash)) showPage(hash);
-    })();
   </script>
 </body>
 </html>
