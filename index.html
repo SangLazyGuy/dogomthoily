@@ -2,132 +2,168 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>Gốm thời Lý</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bát Gốm Thời Lý – Web 3D</title>
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <style>
-    body{
-        margin:0;
-        font-family:system-ui;
-        background:#eef4f1;
-        color:#2b3a32;
-    }
+:root{
+    --gap:20px;
+    --maxw:1100px;
+}
 
-    /* --- TOP NAV --- */
-    nav{
-        display:flex;
-        justify-content:center;
-        gap:12px;
-        background:#8bb7a2;
-        padding:14px 0;
-        position:sticky;
-        top:0;
-    }
-    nav button{
-        background:#ffffff;
-        border:none;
-        padding:10px 18px;
-        border-radius:8px;
-        font-size:15px;
-        cursor:pointer;
-        font-weight:600;
-        transition:0.2s;
-    }
-    nav button.active{
-        background:#35564b;
-        color:white;
-    }
-    nav button:hover{
-        background:#4c7a6a;
-        color:white;
-    }
+/* BODY */
+body{
+    margin:0;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    background-color:#e6f0fa; /* tông xanh nhạt */
+    color:#1a2233;
+}
 
-    /* --- SECTIONS --- */
-    section{
-        display:none;
-        padding:20px;
-        max-width:900px;
-        margin:auto;
-        animation: fade .3s ease;
-    }
-    @keyframes fade{
-        from{opacity:0; transform:translateY(10px);}
-        to{opacity:1; transform:translateY(0);}
-    }
-    section.active{
-        display:block;
-    }
+/* NAV – menu hiện đại */
+.nav{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    background:#d0e3fc;
+    padding:12px 0;
+    border-bottom:2px solid #88b4e0;
+    flex-wrap:wrap;
+}
+.nav button{
+    background:#ffffff;
+    border:1px solid #88b4e0;
+    padding:10px 18px;
+    border-radius:6px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+.nav button:hover{
+    background:#b0d0f2;
+}
+.nav button.active{
+    background:#88b4e0;
+    color:white;
+}
 
-    model-viewer{
-        width:100%; 
-        height:70vh;
-        background:#d8e3dd;
-        border-radius:14px;
-    }
+/* SECTION */
+section{
+    display:none;
+    max-width: var(--maxw);
+    margin: 20px auto;
+    padding: 30px 16px;
+    animation: fadeSlide .4s ease;
+}
+section.active{display:block;}
+@keyframes fadeSlide{
+    from{opacity:0; transform:translateX(-30px);}
+    to{opacity:1; transform:translateX(0);}
+}
 
-    .card{
-        background:white;
-        padding:20px;
-        border-radius:12px;
-        box-shadow:0 6px 20px rgba(0,0,0,.1);
-        line-height:1.6;
-    }
+/* MODEL VIEWER tối giản */
+.model-frame{
+    max-width:400px;
+    margin:20px auto;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 6px 16px rgba(0,0,0,.15);
+    background:white;
+}
+model-viewer{
+    width:100%;
+    height:400px;
+}
 
-    img{
-        width:100%;
-        max-width:800px;
-        border-radius:14px;
-        box-shadow:0 6px 16px rgba(0,0,0,.15);
-    }
+/* THÔNG TIN CARD */
+.card{
+    background:rgba(255,255,255,0.9);
+    padding:22px;
+    border-radius:12px;
+    box-shadow:0 6px 16px rgba(0,0,0,.1);
+    line-height:1.6;
+    max-width:800px;
+    margin:20px auto;
+}
+
+/* POSTER BOX */
+.poster-box{
+    width:90%;
+    max-width:600px;
+    margin:20px auto;
+    border:2px dashed #88b4e0;
+    padding:40px;
+    text-align:center;
+    background: rgba(255,255,255,0.6);
+    border-radius:10px;
+}
+
+/* H1 STYLE */
+h1{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:20px;
+    color:#0f3b75;
+}
+
+/* MOBILE OPTIMIZED */
+@media (max-width:900px){
+    .model-frame{ max-width:100%; }
+    model-viewer{ height:300px; }
+    section{ padding:20px 10px; }
+}
+@media (max-width:600px){
+    .nav{ flex-direction:column; gap:10px; }
+    .nav button{ width:90%; font-size:16px; }
+    model-viewer{ height:250px; }
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-    <button onclick="showTab(1)" id="btn1" class="active">Mô hình 3D</button>
-    <button onclick="showTab(2)" id="btn2">Thông tin</button>
-    <button onclick="showTab(3)" id="btn3">Poster</button>
-</nav>
+<!-- NAVIGATION -->
+<div class="nav">
+    <button onclick="showPage(1)" id="btn1" class="active">Mô hình 3D</button>
+    <button onclick="showPage(2)" id="btn2">Thông tin</button>
+    <button onclick="showPage(3)" id="btn3">Poster</button>
+</div>
 
-<!-- SECTION 1 --------------------------------------------------->
-<section id="tab1" class="active">
-    <h2>Mô hình 3D gốm thời Lý</h2>
-
-    <model-viewer 
-        src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/batthoily.glb"
-        camera-controls auto-rotate>
-    </model-viewer>
-</section>
-
-<!-- SECTION 2 --------------------------------------------------->
-<section id="tab2">
-    <div class="card">
-        <h2>Thông tin về gốm thời Lý</h2>
-        <p>Gốm Lý nổi tiếng với men ngọc xanh lục nhạt, độ mịn cao và họa tiết khắc chìm tinh tế.</p>
-        <p>Đặc trưng gồm:</p>
-        <ul>
-            <li>Men ngọc bóng mượt, trong và sâu.</li>
-            <li>Họa tiết sen – mây – dây lá.</li>
-            <li>Hình dáng thanh thoát, nhẹ.</li>
-        </ul>
+<!-- SECTION 1 – MODEL 3D -->
+<section id="page1" class="active">
+    <h1>Bát Gốm Thời Lý</h1>
+    <div class="model-frame">
+        <model-viewer src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/batthoily.glb"
+        camera-controls auto-rotate ar ar-modes="webxr scene-viewer quick-look"></model-viewer>
     </div>
 </section>
 
-<!-- SECTION 3 --------------------------------------------------->
-<section id="tab3">
-    <h2>Poster trưng bày</h2>
-    <img src="poster.jpg" alt="Poster gốm Lý (gắn ảnh của bạn)">
+<!-- SECTION 2 – THÔNG TIN -->
+<section id="page2">
+    <h1>Thông Tin Bát Gốm Thời Lý</h1>
+    <div class="card">
+        <p>Bát gốm thời Lý nổi bật với men ngọc xanh trong, xương gốm rắn chắc, họa tiết khắc chìm tinh tế.</p>
+        <p>Trang trí chủ yếu hình sen, dây lá, hoa nhỏ, mang tính mỹ thuật tinh tế nhưng gọn nhẹ, thanh thoát.</p>
+        <p class="muted">Phổ biến tại Thăng Long, Thanh Hóa, Thiên Trường.</p>
+    </div>
+</section>
+
+<!-- SECTION 3 – POSTER -->
+<section id="page3">
+    <h1>Khu vực Poster</h1>
+    <div class="poster-box">
+        <p>Chèn ảnh poster tại đây.</p>
+    </div>
 </section>
 
 <script>
-    function showTab(n){
-        document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-        document.getElementById("tab"+n).classList.add("active");
-
-        document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
-        document.getElementById("btn"+n).classList.add("active");
-    }
+function showPage(id){
+    document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
+    document.getElementById("page"+id).classList.add("active");
+    document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+    document.getElementById("btn"+id).classList.add("active");
+    window.scrollTo({top:0, behavior:'smooth'});
+}
 </script>
 
 </body>
