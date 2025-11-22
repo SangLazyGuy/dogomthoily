@@ -1,98 +1,134 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Gốm thời Lý — Viewer</title>
+<meta charset="utf-8">
+<title>Gốm thời Lý</title>
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <style>
-  :root{--bg:#eef6f4; --accent:#2c8c89; --card:#ffffff; --muted:#0d4141; --maxw:1100px}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:Segoe UI, Roboto, system-ui; background:var(--bg); color:var(--muted); display:flex;justify-content:center;padding:28px}
-  .wrap{width:100%;max-width:var(--maxw)}
-  header{padding:16px;border-radius:12px;background:linear-gradient(90deg,#2c8c89,#57b6ad);color:white}
-  header h1{margin:0;font-size:1.1rem;letter-spacing:.6px}
-  .sections{margin-top:18px;display:grid;gap:18px}
-  section{display:none;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(5,40,40,.06)}
-  section.active{display:block}
-  model-viewer{width:100%;height:60vh;border-radius:10px;background:#dff2ef}
-  .controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  .btn{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:white;cursor:pointer}
-  .btn.alt{background:#ffffff;color:var(--accent);border:1px solid rgba(44,140,137,.12)}
-  .meta{color:#0b4746;margin-top:10px}
-  footer{text-align:center;margin-top:14px;color:#2b6b68}
-  @media (max-width:900px){model-viewer{height:48vh}}
+    body{
+        margin:0;
+        font-family:system-ui;
+        background:#eef4f1;
+        color:#2b3a32;
+    }
+
+    /* --- TOP NAV --- */
+    nav{
+        display:flex;
+        justify-content:center;
+        gap:12px;
+        background:#8bb7a2;
+        padding:14px 0;
+        position:sticky;
+        top:0;
+    }
+    nav button{
+        background:#ffffff;
+        border:none;
+        padding:10px 18px;
+        border-radius:8px;
+        font-size:15px;
+        cursor:pointer;
+        font-weight:600;
+        transition:0.2s;
+    }
+    nav button.active{
+        background:#35564b;
+        color:white;
+    }
+    nav button:hover{
+        background:#4c7a6a;
+        color:white;
+    }
+
+    /* --- SECTIONS --- */
+    section{
+        display:none;
+        padding:20px;
+        max-width:900px;
+        margin:auto;
+        animation: fade .3s ease;
+    }
+    @keyframes fade{
+        from{opacity:0; transform:translateY(10px);}
+        to{opacity:1; transform:translateY(0);}
+    }
+    section.active{
+        display:block;
+    }
+
+    model-viewer{
+        width:100%; 
+        height:70vh;
+        background:#d8e3dd;
+        border-radius:14px;
+    }
+
+    .card{
+        background:white;
+        padding:20px;
+        border-radius:12px;
+        box-shadow:0 6px 20px rgba(0,0,0,.1);
+        line-height:1.6;
+    }
+
+    img{
+        width:100%;
+        max-width:800px;
+        border-radius:14px;
+        box-shadow:0 6px 16px rgba(0,0,0,.15);
+    }
 </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="sections">
-      <!-- VIEW -->
-      <section id="view" class="active" aria-label="3D view">
-        <h2>Mô hình 3D — Bát thời Lý</h2>
 
-        <model-viewer
-          src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/batthoily.glb"
-          camera-controls auto-rotate
-          alt="Mô hình bát thời Lý">
-        </model-viewer>
+<nav>
+    <button onclick="showTab(1)" id="btn1" class="active">Mô hình 3D</button>
+    <button onclick="showTab(2)" id="btn2">Thông tin</button>
+    <button onclick="showTab(3)" id="btn3">Poster</button>
+</nav>
 
-        <p class="meta">Bát men ngọc thời Lý: dáng gọn, men trong, trang trí khắc chìm cánh sen.</p>
+<!-- SECTION 1 --------------------------------------------------->
+<section id="tab1" class="active">
+    <h2>Mô hình 3D gốm thời Lý</h2>
 
-        <div class="controls">
-          <button class="btn" onclick="showSection('info')">Xem thông tin →</button>
-          <button class="btn alt" onclick="showSection('poster')">Poster</button>
-        </div>
-      </section>
+    <model-viewer 
+        src="https://huggingface.co/SangLazyGuy/dogom3D/resolve/main/binhthoily.glb"
+        camera-controls auto-rotate>
+    </model-viewer>
+</section>
 
-      <!-- INFO -->
-      <section id="info" aria-label="Thông tin">
-        <h2>Thông tin chi tiết — Gốm thời Lý</h2>
-
-        <p>
-          Bát men ngọc thời Lý nổi bật với cấu trúc mỏng, men xanh ngọc trong. Họa tiết thường là cánh sen, dây lá nhỏ được khắc chìm,
-          tạo hiệu ứng loang chuyển màu khi men tụ vào rãnh.
-        </p>
-
-        <div class="controls">
-          <button class="btn alt" onclick="showSection('view')">← 3D</button>
-          <button class="btn" onclick="showSection('poster')">Poster →</button>
-        </div>
-      </section>
-
-      <!-- POSTER -->
-      <section id="poster" aria-label="Poster">
-        <h2>Poster — Gốm thời Lý</h2>
-
-        <p class="meta">Thay ảnh poster bằng ảnh của bạn: chỉnh thuộc tính `src` ở thẻ &lt;img&gt;.</p>
-
-        <img src="https://via.placeholder.com/900x1200?text=Poster+G%E1%BB%93m+Th%E1%BB%9Di+L%C3%BD"
-             alt="Poster Gốm thời Lý" style="width:100%;border-radius:10px;box-shadow:0 10px 30px rgba(20,60,60,.06)">
-
-        <div class="controls">
-          <button class="btn alt" onclick="showSection('view')">← 3D</button>
-          <button class="btn" onclick="showSection('info')">Thông tin →</button>
-        </div>
-      </section>
+<!-- SECTION 2 --------------------------------------------------->
+<section id="tab2">
+    <div class="card">
+        <h2>Thông tin về gốm thời Lý</h2>
+        <p>Gốm Lý nổi tiếng với men ngọc xanh lục nhạt, độ mịn cao và họa tiết khắc chìm tinh tế.</p>
+        <p>Đặc trưng gồm:</p>
+        <ul>
+            <li>Men ngọc bóng mượt, trong và sâu.</li>
+            <li>Họa tiết sen – mây – dây lá.</li>
+            <li>Hình dáng thanh thoát, nhẹ.</li>
+        </ul>
     </div>
+</section>
 
- </div>
+<!-- SECTION 3 --------------------------------------------------->
+<section id="tab3">
+    <h2>Poster trưng bày</h2>
+    <img src="poster.jpg" alt="Poster gốm Lý (gắn ảnh của bạn)">
+</section>
 
 <script>
-  function showSection(id){
-    document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-    const el=document.getElementById(id);
-    if(el) el.classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
+    function showTab(n){
+        document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+        document.getElementById("tab"+n).classList.add("active");
 
-  function downloadPoster(){
-    const img = document.querySelector('#poster img');
-    if(!img) return alert('Không tìm thấy poster.');
-    const a=document.createElement('a');
-    a.href=img.src; a.download='poster_ly.jpg'; a.click();
-  }
+        document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+        document.getElementById("btn"+n).classList.add("active");
+    }
 </script>
+
 </body>
 </html>
